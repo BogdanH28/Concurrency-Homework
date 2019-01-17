@@ -1,6 +1,6 @@
 package siit;
 
-public class FestivalAttendeeThread extends Thread{
+public class FestivalAttendeeThread implements Runnable{
 
     private TicketType ticketType;
 

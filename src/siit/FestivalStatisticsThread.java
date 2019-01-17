@@ -1,6 +1,6 @@
 package siit;
 
-public class FestivalStatisticsThread extends Thread {
+public class FestivalStatisticsThread implements Runnable {
 
     private FestivalGate gate;
 

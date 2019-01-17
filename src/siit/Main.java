@@ -7,17 +7,17 @@ public class Main {
     public static void main(String[] args) throws InterruptedException{
         FestivalGate principalGate = new FestivalGate();
 
-        FestivalStatisticsThread statisticsThread = new FestivalStatisticsThread(principalGate);
+        Runnable statisticsThreadRunnable = new FestivalStatisticsThread(principalGate);
+        Thread statisticsThread = new Thread(statisticsThreadRunnable);
         statisticsThread.start();
 
         for(int i = 1; i <= 1000; i++) {
             TicketType ticketType = TicketType.values()[new Random().nextInt(TicketType.values().length)];
-            Thread festivalAttendee = new FestivalAttendeeThread(ticketType, principalGate);
-            festivalAttendee.start();
+            Runnable festivalAttendeeRunnable = new FestivalAttendeeThread(ticketType, principalGate);
+            Thread festivalAttendeeThread = new Thread(festivalAttendeeRunnable);
+            festivalAttendeeThread.start();
 
             Thread.sleep(250);
-
-            festivalAttendee.join();
         }
     }
 
